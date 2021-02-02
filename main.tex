@@ -1,0 +1,313 @@
+\documentclass{homeworg}
+
+\title{QCQI Chapter 2}
+\author{Zhou Huanhai}
+
+\usepackage{braket}
+
+\begin{document}
+
+\maketitle
+
+\exercise
+The exercises are automatically numbered, starting from one. Packages such as \texttt{amsmath} and \texttt{hyperref} are included by default.
+
+Paragraphs are not indented, but are instead separated by some vertical space.
+
+As an example: the \emph{standard inner product} on $\R^n$ is defined as
+\[\vec a * \vec b \coloneqq x_1 y_1 + \dots + x_n y_n\qquad\text{for }\vec a,\vec b \in \R^n.\]
+Note that \texttt{*} can be used instead of \verb|\cdot|, and \verb|\R| instead of \verb|\mathbb{R}|. (For a normal asterisk, use \verb|\ast|.) Of course, there are macros for the natural numbers etc.\ too. Commands such as \verb|\abs{}| and \verb|\Set{}| can be used to easily create (scaled) delimiters. For example,
+\[\abs{\frac{1}{1 - \lambda h}} \le 1\qquad\text{and}\qquad\Set{ x \in \R \mid 1 < \sqrt{x^3 + 2} < \frac{3}{2} }.\]
+The starred version of these commands disables the auto-scaling.
+
+\exercise*
+A matrix representation of $A$ is:
+
+\[\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}\]
+
+where we take $\{\ket{0},\ket{1}\}$ as the input and output bases.
+
+If we change the output bases to $\{\ket{+},\ket{-}\}$ (input bases remains), note that $A\ket{0}=\ket{1}=\frac{\ket{+}-\ket{-}}{\sqrt{2}}$ and $A\ket{1}=\ket{0}=\frac{\ket{+}+\ket{-}}{\sqrt{2}}$, there is a different matrix representation:
+
+\[\begin{bmatrix} \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{bmatrix}\]
+
+\exercise*
+For simplicity, take $\{\ket{v_i}\}$, $\{\ket{w_j}\}$ and $\{\ket{x_k}\}$ as the corresponding input and output bases.
+
+Given that 
+
+\[\forall i.\; A\ket{v_i}=\sum_{j}A_{ji}\ket{w_j}\]
+
+and
+
+\[\forall j.\; B\ket{w_j}=\sum_{k}B_{kj}\ket{x_k},\]
+
+we have
+
+\begin{align}
+    \forall i.\; BA\ket{v_i}&=B\sum_{j}A_{ji}\ket{w_j}\nonumber\\
+    &=\sum_{j}A_{ji}B\ket{w_j}\nonumber\\
+    &=\sum_{j}\sum_{k}A_{ji}B_{kj}\ket{x_k}\nonumber\\
+    &=\sum_{k}\sum_{j}B_{kj}A_{ji}\ket{x_k}\nonumber
+\end{align}
+
+Hence for the new operator $BA$, there is a matrix representation denoted as $(BA)_{\mathrm{rank}(X)\times \mathrm{rank}(V)}$, which satisfies:
+
+\[\forall{k,i}.\; (BA)_{k,i}=\sum_{k}\sum_{j}B_{kj}A_{ji}\]
+
+i.e., $(BA)_{\mathrm{rank}(X)\times \mathrm{rank}(V)}$ is the matrix product of $B_{\mathrm{rank}(X)\times \mathrm{rank}(W)}$ and $A_{\mathrm{rank}(W)\times \mathrm{rank}(V)}$.
+
+\exercise*
+Let $n$ denotes the rank of $V$ and $\{\ket{v}_i\}$ as a set of bases of $V$.
+
+Have the identity operator $I$ written in a matrix form as follows:
+
+\[\forall{j=0,1,2,\cdots, n}.\;I\ket{v_j}=\ket{v_j}=\sum_{i=0,1,\cdots,n}k_{ij}\ket{v_i}\]
+
+Assume that 
+
+\[\exists{m\neq n}.\;k_{mn}\neq0,\]
+
+There are only two possible cases: Either $\{\ket{v_i}\}$ are linearly dependent, or $\ket{v_m}=\vec 0$,
+
+which leads to contradiction with the fact that $\{\ket{v_i}\}$ forms a set of bases of $V$.
+
+Therefore we have
+
+\[\forall{i\neq j}.\;k_{ij}=0\]
+
+and hence 
+
+\[\forall i. k_{ii} = 1\]
+
+So the one and only matrix representation of $I$ is $\mathrm{diag(\underbrace{1,1,1,\cdots,1}_{n})}$.
+
+\exercise*
+Let $\vec{x}=(x_1,\cdots,x_n)\in \mathbb{C}^n$, $\vec{y}=(y_1,\cdots,y_n)\in \mathbb{C}^n$ and  $\vec{z} =(z_1,\cdots,z_n)\in \mathbb{C}^n$.
+
+Check the requirements of a inner product:
+\begin{itemize}
+    \item linear in the second argument:
+    \begin{align}
+    (\vec{x},\lambda_y \vec{y} +\lambda_z \vec{z})&=(\vec{x},(\lambda_y y_1 +\lambda_z z_1,\cdots,\lambda_y y_n +\lambda_z z_n))\nonumber\\
+    &=\sum_i x_i^\star (\lambda_y y_i +\lambda_z z_i)\nonumber\\
+    &=\lambda_y\sum_i x_i^\star y_i + \lambda_z\sum_i x_i^\star z_i\nonumber\\
+    &=\lambda_y(\vec{x},\vec{y})+\lambda_z(\vec{x},\vec{z})\nonumber
+    \end{align}
+    \item Note that $\forall{a,b}\in \mathbb{C}.\;(ab)^\star=a^\star b^\star = b^\star a^\star$ and $a^\star + b^\star = (a+b)^\star$,
+    
+    then we have:
+    \[(\vec{x},\vec{y})=\sum_i x_i^\star y_i=\sum_i (y_i^\star x_i)^\star=(\sum_i y_i^\star x_i)^\star=(\vec{y},\vec{x})^\star\]
+    \item  Note that $\forall{a}\in \mathbb{C}.\;a^\star a\geq 0$ with equality if and only if $a=0$,
+    
+    then we have
+    
+    \[(\vec{x},\vec{x})=\sum_i x_i^\star x_i\geq 0,\]
+    
+    with equality if and only if all $x_i=0$, i.e., $\vec{x}=\vec{0}$.
+    
+\end{itemize}
+So $(\cdot,\cdot)$ is an inner product on $\mathbb{C}^n$.
+
+\exercise*
+
+Let $(\cdot,\cdot)$ be inner product from $V\times V$ to $\mathbb{C}$, and $\ket{x},\ket{y},\ket{z}\in V$.
+
+Based on the second property (conjugate-symmetry) and apply linearity in the second argument, we have
+\begin{align}
+    (\lambda_x\ket{x}+\lambda_y \ket{y},\ket{z})&=(\ket{z},\lambda_x\ket{x}+\lambda_y \ket{y})^\star\nonumber\\
+    &=(\lambda_x(\ket{z},\ket{x})+\lambda_y(\ket{z},\ket{y}))^\star\nonumber\\
+    &=\lambda_x^\star(\ket{z},\ket{x})^\star + \lambda_y^\star(\ket{z},\ket{y})^\star\nonumber\\
+    &=\lambda_x^\star(\ket{x},\ket{z}) + \lambda_y^\star(\ket{y},\ket{z})\nonumber
+\end{align}
+i.e., an inner product is conjugate-linear in the first
+ argument.
+
+\exercise*
+
+Let $\{\ket{0},\ket{1}\}$ denotes the orthonormal bases of the vector representation.
+
+We have
+\begin{align}
+\braket{w|v}&=(\bra{0}+\bra{1})(\ket{0}-\ket{1})\nonumber\\
+&=\braket{0|0}-\braket{1|1}+\braket{1|0}-\braket{0|1}\nonumber\\
+&=1-1+0-0\nonumber\\
+&=0\nonumber
+\end{align}
+So $\ket{w}$ and $\ket{v}$ are orthogonal.
+
+Their normalized forms are $\ket{w^\prime}=\frac{\ket{w}}{\left\|\ket{w}\right\|}=(\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2})$ and $\ket{v^\prime}=\frac{\ket{v}}{\left\|\ket{v}\right\|}=(\frac{\sqrt{2}}{2},-\frac{\sqrt{2}}{2})$.
+
+\exercise*
+Let $\{\ket{w_i}\}$ denotes the original basis and $\{\ket{v_i}\}$ as the basis given by the Gram-Schmidt procedure.
+
+According to definition, it is clear that they are normalized, i.e.,
+\[\forall{i}.\;\braket{v_i|v_i}=\left\|v_i\right\|=1\]
+
+Note that the inner product is conjugate-symmetry, we just need to check whether for all $1\leq k\leq d-1$ and $1\leq l\leq k$, $\ket{v_{k+1}}$ and $\ket{v_l}$ are orthogonal. And for simplicity we check numerators of the Gram-Schmidt form.
+
+\begin{itemize}
+    \item $\ket{v_2}$ and $\ket{v_1}$ are orthogonal because
+    \[(\bra{w_2}-\braket{v_1|w_2}\bra{v_1})\ket{v_1}=\braket{w_2|v_1}-\braket{v_1|w_2}\braket{v_1|v_1}=0
+    \]
+    \item Assume that for all $1\leq i\leq k\;(2\leq k\leq d-1)$, $\{\ket{v_i}\}$ are orthonormal, then we have
+    \begin{align}
+        \forall 1\leq i\leq k.\;(\bra{w_{k+1}}-\sum_{j=1}^{k}\braket{v_j|w_{k+1}}\bra{v_j})\ket{v_i}&=\braket{w_{k+1}|v_i}-\sum_{j=1}^{k}\braket{v_j|w_{k+1}}\delta_{ij}\nonumber\\
+        &=\braket{w_{k+1}|v_i}-\braket{v_i|w_{k+1}}\nonumber\\
+        &=0\nonumber
+    \end{align}
+    i.e., $\{\ket{v_i}\}\cup\{\ket{v_{k+1}}\}$ are orthonormal.
+    
+\end{itemize}
+
+By induction we prove that $\{\ket{v_i}\}$ is an an orthonormal basis.
+
+\exercise*
+\begin{itemize}
+    \item $X=\ket{0}\bra{1}+\ket{1}\bra{0}$
+    \item $Y=-i\ket{0}\bra{1}+i\ket{1}\bra{0}$
+    \item $Z=\ket{0}\bra{0}-\ket{1}\bra{1}$
+\end{itemize}
+
+\exercise*
+Let $A$ be the matrix representation for the operator $\ket{v_j}\bra{v_k}$, we have
+\[\forall m\neq j\;\text{or}\;n\neq k.\;\bra{v_m}A\ket{v_n}=0\]
+Note that $A\ket{v_n}$ is a linear combination of $\{\ket{v_i}\}$, hence $\bra{v_m}A\ket{v_n}=0$ if and only if $A_{mn}=0$.
+
+Furthermore,
+\[\bra{v_j}A\ket{v_k}=A_{jk}\braket{v_j|v_j}=A_{jk}=1\]
+
+So $A$ is a $\text{rank}(V)\times \text{rank}(V)$ matrix, with $A_{jk}=1$ and other entries set to 0.
+
+\exercise*
+\begin{itemize}
+    \item $\det|X-\lambda I|=\lambda^2-1=0\Rightarrow\lambda_{1,2}=\pm1$
+    
+        \subitem $\lambda_1=1$:\quad$(X-I)\ket{x}=0\Rightarrow$ a normalized eigenvector $\ket{x_1}=\frac{\sqrt{2}}{2}(1,1)$
+        \subitem $\lambda_2=-1$:\;\;$(X+I)\ket{x}=0\Rightarrow$ a normalized eigenvector $\ket{x_2}=\frac{\sqrt{2}}{2}(1,-1)$
+        
+    Hence a diagonal representation is $X=\ket{x_1}\bra{x_1} - \ket{x_2}\bra{x_2}$
+    \item $\det|Y-\lambda I|=\lambda^2-1=0\Rightarrow\lambda_{1,2}=\pm 1$
+    
+        \subitem $\lambda_1=1$:\quad$(Y-I)\ket{y}=0\Rightarrow$ a normalized eigenvector $\ket{y_1}=\frac{\sqrt{2}}{2}(1,i)$
+        \subitem $\lambda_2=-1$:\;\;$(Y+I)\ket{y}=0\Rightarrow$ a normalized eigenvector $\ket{y_2}=\frac{\sqrt{2}}{2}(1,-i)$
+        
+    Hence a diagonal representation is $Y=\ket{y_1}\bra{y_1} - \ket{y_2}\bra{y_2}$
+    \item $\det|Z-\lambda I|=\lambda^2-1=0\Rightarrow\lambda_{1,2}=\pm 1$
+    
+        \subitem $\lambda_1=1$:\quad$(Z-I)\ket{z}=0\Rightarrow$ a normalized eigenvector $\ket{z_1}=(1,0)$
+        \subitem $\lambda_2=-1$:\;\;$(Z+I)\ket{z}=0\Rightarrow$ a normalized eigenvector $\ket{z_2}=(0,1)$
+        
+    Hence a diagonal representation is $Y=\ket{z_1}\bra{z_1} - \ket{z_2}\bra{z_2}$
+\end{itemize}
+
+\exercise*
+\[\det (\begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}-\lambda I)=(1-\lambda)^2=0\]
+We get the only eigenvalue $\lambda=1$.
+
+Let $(A-I)\ket{x}=0$, then get an eigenvector $\ket{x}=(0,1)$ and the rank of the eigenspace w.r.t. $\lambda=1$ is 1.
+
+Note that
+\[k\ket{x}\bra{x}=\begin{bmatrix} 0 & 0 \\ 0 & k \end{bmatrix}\neq\begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}\]
+
+Hence the matrix is not diagonalizable.
+
+\exercise*
+Suppose $\ket{w}\in W$ and $\ket{v}\in V$.
+
+Let operator $A=\ket{w}\bra{v}$ and $B=\ket{v}\bra{w}$. It is not difficult to see that $A$ maps from $V$ to $W$ and $B$ maps from $W$ to $V$.
+
+\[\forall \ket{i}\in V.\;(A\ket{i})^\dagger=\braket{v|i}^\star\bra{w}=\braket{i|v}\bra{w}=\bra{i}A^\dagger=\bra{i}B\]
+
+Hence $B=A^\dagger$, i.e., $(\ket{w}\bra{v})^\dagger=\ket{v}\bra{w}$.
+
+\exercise*
+Suppose $A_i$ maps from $V$ to $W$.
+
+For all $\ket{v}\in V, \ket{w}\in W$,
+\begin{align}
+((\sum_i a_i A_i)^\dagger\ket{v},\ket{w})&=(\ket{v},\sum_i a_i A_i\ket{w})\nonumber\\
+&=\sum_i a_i(\ket{v},A_i\ket{w})\nonumber\\
+&=\sum_i a_i(A_i^\dagger\ket{v},\ket{w})\nonumber\\
+&=((\sum_i a_i^\star A_i^\dagger)\ket{v},\ket{w})\nonumber
+\end{align}
+Hence $(\sum_i a_i A_i)^\dagger=\sum_i a_i^\star A_i^\dagger$.
+
+\exercise*
+Suppose $A$ maps from $V$ to $W$.
+
+For all $\ket{v}\in V, \ket{w}\in W$,
+\[
+((A^\dagger)^\dagger\ket{v},\ket{w})=(\ket{v},A^\dagger\ket{w})=(A^\dagger\ket{w},\ket{v})^\star=(\ket{w},A\ket{v})^\star=(A\ket{v},\ket{w})
+\]
+Hence $(A^\dagger)^\dagger=A$.
+
+\exercise*
+Suppose $P$ maps from $V$ to its subspace $W$: \[P=\sum_{i=1}^k\ket{i}\bra{i},\]
+where $\{\ket{i}\}$ is an orthonormal basis for $W$.
+\begin{align}
+    \forall \ket{v}\in V, P^2&=\sum_{i}\ket{i}\bra{i}\sum_{j}\ket{j}\bra{j}\nonumber\\
+    &=\sum_{i,j}\ket{i}\braket{i|j}\bra{j}\nonumber\\
+    &=\sum_{i,j}\delta_{ij}\ket{i}\bra{j}\nonumber\\
+    &=\sum_{i}\ket{i}\bra{i}\nonumber\\
+    &=P\nonumber
+\end{align}
+
+\exercise*
+\begin{itemize}
+    \item $\Rightarrow$:
+    
+    For any Hermitian matrix $A$, suppose it has an eigenvalue $\lambda$ and a corresponding eigenvector $\ket{x}$.
+    
+    We have
+    \[\bra{x}A\ket{x}=\bra{x}\lambda\ket{x})=\lambda\braket{x|x}\]
+    
+    On the other side,
+    \[\bra{x}A\ket{x}=\bra{x}A^\dagger\ket{x})=\bra{x}A\ket{x}^\star=\lambda^\star\braket{x|x}\]
+    
+    Note that $\braket{x|x}> 0$, so $\lambda=\lambda^\star$.i.e., $\lambda$ is real.
+    \item $\Leftarrow$:
+    
+    Let $A$ be any normal matrix with real eigenvalues. As it is normal, it can be diagonalize as follows:
+    \[A=\sum_i\lambda_i\ket{i}\bra{i}\]
+    where $\{\ket{i}\}$ are eigenvectors corresponding to eigenvalues $\{\lambda_i\}$. 
+    
+    (Notice that the rank of an eigenspace may be greater than 1, but it does not matter.)
+    
+    Given that $\lambda_i$ is real, \[A^\dagger=(A^\star)^T=\sum_i\lambda_i^\star\ket{i}\bra{i}=\sum_i\lambda_i\ket{i}\bra{i}=A\]
+    i.e., $A$ is Hermitian.
+\end{itemize}
+Combining the two parts above, a normal matrix is Hermitian if and only if it has real eigenvalues.
+\exercise*
+Let $U$ be a unitary matrix, and $\lambda$ as any of its eigenvalues. Then we have
+
+\[(U\ket{v},U\ket{w})=(\lambda\ket{v},\lambda\ket{w})=\lambda\lambda^\star(\ket{v},\ket{w})\]
+
+Also by definition
+\[(U\ket{v},U\ket{w})=(\ket{v},\ket{w})\]
+
+Hence 
+\[\lambda\lambda^\star=1\]
+
+Note that $\left\|\lambda\right\|\left\|\lambda^\star\right\|=1$ and $\left\|\lambda\right\|=\left\|\lambda^\star\right\|\geq0$, so $\left\|\lambda\right\|=1$.
+
+In conclusion, all eigenvalues of $U$ have modulus 1.
+
+\exercise*
+\begin{itemize}
+    \item $I$: It is clear that $I$ is Hermitian and unitary.
+   \item $X$:
+   \[X^\dagger=\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}=X\]
+   \[X^\dagger X=\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}=\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}=I\]
+   \item $Y$:
+   \[Y^\dagger=\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}=Y\]
+   \[Y^\dagger Y=\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}=\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}=I\]
+   \item $Z$:
+   \[Z^\dagger=\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}=Z\]
+   \[Z^\dagger Z=\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}=\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}=I\]
+\end{itemize}
+
+\exercise*
+
+
+\end{document}
