@@ -308,6 +308,353 @@ In conclusion, all eigenvalues of $U$ have modulus 1.
 \end{itemize}
 
 \exercise*
+Let $U=\sum_i\ket{w_i}\bra{v_i}$.
+
+Note that $\ket{v_i}$ and $\ket{w_i}$ are both orthonormal bases, hence the operator $U$ is unitary.
+\begin{align}
+    A_{ij}^\prime=\bra{v_i}A\ket{v_j}&=\bra{v_i}U U^\dagger AU U^\dagger\ket{v_j}\nonumber\\
+    &=\sum_k\braket{v_i|w_k}\bra{v_k} U^\dagger AU \sum_l\braket{w_l|v_j}\ket{v_l}\nonumber\\
+    &=\sum_k\braket{v_i|w_k}\bra{v_k} \sum_m \ket{v_m}\bra{w_m} A \sum_n\ket{w_n}\bra{v_n} \sum_l\braket{w_l|v_j}\ket{v_l}\nonumber\\
+    &=\sum_{k,l}\braket{v_i|w_k}\braket{w_l|v_j} \sum_{m,n} \delta_{km}A_{mn}^{\prime\prime} \delta_{nl}\nonumber\\
+    &=\sum_{k,l}\braket{v_i|w_k}\braket{w_l|v_j} A_{kl}^{\prime\prime} \nonumber
+\end{align}
+which characterizes the relationship between $A^\prime$ and $A^{\prime\prime}$.
+
+\exercise*
+\begin{itemize}
+    \item $\Rightarrow$:
+    We also prove by induction on the dimension $d$ of $V$. The case $d=1$ is also trivial.
+    
+    Let $\lambda$ be an eigenvalue of $M$, $P$ the projector onto the $\lambda$ eigenspace, and $Q$ the projector onto the orthogonal complement. Then
+    
+    \[M=(P+Q)M(P+Q)=PMP+QMP+PMQ+QMQ\]
+    Note that $QMP=0$ as $M$ takes the subspace $P$ into itself. Also we have
+    \[PMQ=(Q M^\dagger P)^\star=(Q M P)^\star=0\]
+    
+    Next we prove that $QMQ$ is Hermitian:
+    \[(QMQ)^\dagger=QM^\dagger Q=QMQ\]
+    
+    By induction, $QMQ$ is diagonal w.r.t. some orthonormal basis for the subspace $Q$, and $PMP$ is already diagonal w.r.t. some orthonormal basis for the $\lambda$ eigenspace.
+    
+    It follows that $M=PMP+QMQ$ is also diagonal, w.r.t. some orthonormal basis for $V$.
+    
+    \item $\Leftarrow$: It turns out that the statement does not hold conversely, in the Hermitian case.
+    
+\end{itemize}
+
+\exercise*
+Let $A$ by any Hermitian operator with eigenvalues $\lambda_1$ and $\lambda_2$, and corresponding eigenvectors $\ket{\lambda_1}$ and $\ket{\lambda_2}$. ($\lambda_1$ and $\lambda_2$ are real as $A$ is Hermitian.)
+
+Note that $A\ket{\lambda_2}=\lambda_2\ket{\lambda_2}$ and $\bra{\lambda_1}A^\dagger=\lambda_1^\star\bra{\lambda_1}=\lambda_1\bra{\lambda_1}$,
+\[\bra{\lambda_1}A\ket{\lambda_2}=\lambda_2\braket{\lambda_1|\lambda_2}\]
+Also we have 
+\[\bra{\lambda_1}A\ket{\lambda_2}=\bra{\lambda_1}A^\dagger\ket{\lambda_2}=\lambda_1\braket{\lambda_1|\lambda_2}\]
+Combine the two equations above we get
+\[(\lambda_1-\lambda_2)\bra{\lambda_1|\lambda_2}=0\]
+As $\lambda_1 \neq \lambda_2$, $\ket{\lambda_1}$ and $\ket{\lambda_2}$ are necessarily orthogonal.
+
+\exercise*
+For simplicity we use $P$ to denote both the projector and the associated subspace.
+
+Let $V$ be the total vector space and $Q$ the orthogonal complement of $P$.
+
+For any non-zero vector $\ket{v}\in V$, it could be written in the following form:
+\[\ket{v}=\ket{v_P}+\ket{v_Q}\]
+where $\ket{v_P}\in P$ and $\ket{v_Q}\in Q$.
+
+If $P\ket{v}=\lambda \ket{v}$ holds for some $\lambda$, we have
+\begin{align}
+    P\ket{v}&=P\ket{v_P}+P\ket{v_Q}\nonumber\\
+    &=\ket{v_P}\nonumber\\
+    &=\lambda\ket{v_P} + \lambda\ket{v_Q}\nonumber
+\end{align}
+Hence
+\[(\lambda-1)\ket{v_P}+\lambda\ket{v_Q}=\vec 0\]
+From exercise 2.22 we know that $\ket{v_P}$ and $\ket{v_Q}$ are orthonormal and they cannot be zero vectors at the same time, so there are only two possible cases:
+\begin{itemize}
+    \item $\lambda =0$: In this case $\ket{v}\in Q$
+    \item $\lambda =1$: In this case $\ket{v}\in P$
+\end{itemize}
+In conclusion, the eigenvalues of P are all either 0 or 1.
+
+\exercise*
+For any positive operator $A$, we have
+\[A=\frac{A+A^\dagger}{2}+i\frac{A-A^\dagger}{2i}\]
+Let $B=\frac{A+A^\dagger}{2}$ and $C=\frac{A-A^\dagger}{2i}$, and it is clear that they are both Hermitian. Hence we have
+\[\forall\ket{v}.\;\bra{v}A\ket{v}=\bra{v}B+iC\ket{v}=\bra{v}B\ket{v}+i\bra{v}C\ket{v}\geq 0\]
+Note that $B$ and $C$ are Hermitian, $\bra{v}B\ket{v}$ and $\bra{v}C\ket{v}$ should both be real. Since the equation above holds for all $\ket{v}$, $C$ must be a zero operator. Therefore
+\[A=A^\dagger\]
+i.e., $A$ is Hermitian.
+
+\exercise*
+For any $\ket{v}$, suppose $A$ maps from $\ket{v}$ to $\ket{w}$.
+
+We have
+\[(\ket{v},A^\dagger A\ket{v})=\bra{v}A^\dagger A\ket{v}=\braket{w|w}\geq 0\]
+By definition $A^\dagger A$ is positive.
+\exercise*
+\begin{itemize}
+    \item 
+    \[\ket{\psi}^{\otimes 2}=(\frac{\ket{0}+\ket{1}}{\sqrt{2}})\otimes(\frac{\ket{0}+\ket{1}}{\sqrt{2}})=\frac{1}{2}\ket{00}+\frac{1}{2}\ket{01}+\frac{1}{2}\ket{10}+\frac{1}{2}\ket{11}\]
+    \[\ket{\psi}^{\otimes 2}=\begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix}\otimes\begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix}=\frac{1}{2}\begin{bmatrix} 1 \\ 1\\ 1\\ 1 \end{bmatrix}\]
+    \item
+    \begin{align}
+        \ket{\psi}^{\otimes 3}=&(\frac{\ket{0}+\ket{1}}{\sqrt{2}})\otimes(\frac{\ket{0}+\ket{1}}{\sqrt{2}})\otimes(\frac{\ket{0}+\ket{1}}{\sqrt{2}})\nonumber\\
+        =&\frac{\sqrt{2}}{4}\ket{000}+\frac{\sqrt{2}}{4}\ket{001}+\frac{\sqrt{2}}{4}\ket{010}+\frac{\sqrt{2}}{4}\ket{011}+\frac{\sqrt{2}}{4}\ket{100}+\frac{\sqrt{2}}{4}\ket{101}\nonumber\\
+        &+\frac{\sqrt{2}}{4}\ket{110}+\frac{\sqrt{2}}{4}\ket{111}\nonumber
+    \end{align}
+    \[\ket{\psi}^{\otimes 3}=\begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix}\otimes\begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix}\otimes\begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix}=\frac{\sqrt{2}}{4}\begin{bmatrix} 1 \\ 1\\ 1\\ 1\\ 1 \\ 1\\ 1 \\ 1 \end{bmatrix}\]
+\end{itemize}
+
+\exercise*
+\begin{itemize}
+\item
+\[X\otimes Z=\begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & -1 \\
+1 & 0 & 0 & 0 \\
+0 & -1 & 0 & 0\end{bmatrix}\]
+\item
+\[I\otimes X=\begin{bmatrix}
+0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0\end{bmatrix}\]
+\item
+\[X\otimes I=\begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0\end{bmatrix}\]
+\end{itemize}
+
+Note that $I\otimes X\neq X\otimes I$, hence the tensor product is not commutative, in general.
+\exercise*
+\begin{itemize}
+    \item Distribution of transposition:
+    \[(A\otimes B)^\text{T}=\begin{bmatrix}
+    A_{11}B^\text{T} & A_{21}B^\text{T} & \cdots & A_{m1}B^\text{T}\\
+    A_{12}B^\text{T} & A_{22}B^\text{T} & \cdots & A_{m2}B^\text{T}\\
+    \vdots & \vdots & \vdots & \vdots\\
+    A_{1n}B^\text{T} & A_{2n}B^\text{T} & \cdots & A_{mn}B^\text{T}
+    \end{bmatrix}
+    =\begin{bmatrix}
+    A_{11} & A_{21} & \cdots & A_{m1}\\
+    A_{12} & A_{22} & \cdots & A_{m2}\\
+    \vdots & \vdots & \vdots & \vdots\\
+    A_{1n} & A_{2n} & \cdots & A_{mn}
+    \end{bmatrix}\otimes B^\text{T}=A^\text{T}\otimes B^\text{T}\]
+    
+    \item Distribution of complex conjugation:
+    \[(A\otimes B)^\star=\begin{bmatrix}
+    A_{11}^\star B^\star & A_{12}^\star B^\star & \cdots & A_{1n}^\star B^\star\\
+    A_{21}^\star B^\star & A_{22}^\star B^\star & \cdots & A_{2n}^\star B^\star\\
+    \vdots & \vdots & \vdots & \vdots\\
+    A_{m1}^\star B^\star & A_{m2}B^\star & \cdots & A_{mn}^\star B^\star
+    \end{bmatrix}
+    =\begin{bmatrix}
+    A_{11}^\star & A_{12}^\star & \cdots & A_{1n}^\star\\
+    A_{21}^\star & A_{22}^\star & \cdots & A_{2n}^\star\\
+    \vdots & \vdots & \vdots & \vdots\\
+    A_{m1}^\star & A_{2n}^\star & \cdots & A_{mn}^\star
+    \end{bmatrix}\otimes B^\star=A^\star\otimes B^\star\]
+    
+    \item Distribution of adjoint operation:
+    
+    Based on the two distribution laws above, we have
+    \[(A\otimes B)^\dagger=((A\otimes B)^\star)^\text{T}=((A^\star\otimes B^\star)^\text{T}=A^\dagger\otimes B^\dagger\]
+\end{itemize}
+
+\exercise*
+Let $U_1:V\to V^\prime$ be a unitary operator and $U_2:W\to W^\prime$ as another unitary operator.
+
+Based on exercise 2.28 we know that $(U_1\otimes U_2)^\dagger=U_1^\dagger\otimes U_2^\dagger$. So
+
+\[(U_1\otimes U_2)^\dagger(U_1\otimes U_2)=U_1^\dagger U_1\otimes U_2^\dagger U_2=I_1\otimes I_2=I_{V\otimes W}\]
+Similarly we have $(U_1\otimes U_2)(U_1\otimes U_2)^\dagger=I_{V^\prime\otimes W^\prime}$, i.e., $U_1\otimes U_2$ is also unitary.
+
+\exercise*
+Let $A$ be a Hermitian operator on $V$ and $B$ as another Hermitian operator on $W$.
+
+Based on exercise 2.28 we know that
+\[(A\otimes B)^\dagger=A^\dagger\otimes B^\dagger=A\otimes B\]
+i.e., $A\otimes B$ is also Hermitian.
+
+\exercise*
+Let $A$ be a positive operator on $V$ and $B$ as another positive operator on $W$. 
+
+Note that $\ket{v_i}\otimes\ket{w_j}$ forms an orthonormal basis for $V\otimes W$, hence for any $\ket{u}$ in $V\otimes W$, it is a linear combination of $\{\ket{v_i}\otimes\ket{w_j}\}$:
+\[\ket{u}=\sum_{k,l}a_{kl}\ket{v_k}\otimes\ket{w_l}\]
+Consider the natural inner product on $V\otimes W$ and apply linearity:
+\begin{align}
+(\ket{u},(A\otimes B)\ket{u})&=(\sum_{k,l}a_{kl}\ket{v_k}\otimes\ket{w_l}, \sum_{k,l}a_{kl}A\ket{v_k}\otimes B\ket{w_l})\nonumber\\
+&=\sum_{k,l}\left\|a_{kl}\right\|^2\bra{v_k}A\ket{v_k}\bra{w_l}B\ket{w_l}\nonumber\\
+&\geq 0\nonumber
+\end{align}
+Hence $A\otimes B$ is also positive.
+
+\exercise*
+Let $P_V=\sum_i \ket{v_i}\bra{v_i}$ be a projector on $V$ and $P_W=\sum_j\ket{w_j}\bra{w_j}$ as another projector on $W$.
+For simplicity we have $P_V$ and $P_W$ also denote the corresponding subspace.
+
+It is clear that
+\[P_V\otimes P_W=\sum_{i,j}\ket{v_i}\otimes\ket{w_j}\bra{v_i}\otimes\bra{w_j}\]
+
+Note that $\ket{v_i}\otimes\ket{w_j}$ forms a orthonormal basis for $V\otimes W$, therefore $P_V\otimes P_W$ is also a projector on $V\otimes W$, w.r.t. the subspace $P_V\otimes P_W$.
+
+\exercise*
+We prove the statement inductively.
+\begin{itemize}
+    \item When $n=1$, it holds that
+    \[H^{\otimes 1}=\frac{1}{\sqrt{2}}(\ket{0}\bra{0}+\ket{0}\bra{1}+\ket{1}\bra{0}-\ket{1}\bra{1})=\frac{1}{\sqrt{2}}\sum_{x_1,y_1=0,1}(-1)^{x\cdot y}\ket{x_1}\bra{y_1})\]
+    \item Assume that for any $n\geq 1$, 
+    \[H^{\otimes n}=\frac{1}{\sqrt{2^n}}\sum_{x_n,y_n=0,1,\dots, 2^n -1}(-1)^{x_n\cdot y_n}\ket{x_n}\bra{y_n}\]
+    Note that every time we tensor with $H$, the basis changes from $\ket{x_n}$ to $\ket{x_{n+1}}$, with $\ket{i}\leftarrow\ket{i}\otimes\ket{0}$ and $\ket{i+2^n}\leftarrow\ket{i}\otimes\ket{1}$ for all $0\leq i< 2^n$.
+    
+    Hence we have
+    \[H^{\otimes n+1}=H^{\otimes n}\otimes H=\frac{1}{\sqrt{2^{n+1}}}\sum_{x_{n+1},y_{n+1}=0,1,\dots,2^{n+1}-1}(-1)^{x_{n+1}\cdot y_{n+1}}\ket{x_{n+1}}\bra{y_{n+1}}\]
+\end{itemize}
+
+By induction we can prove that the equation of $H^{\otimes n}$ always holds.
+
+The matrix representation for $H^{\otimes 2}$ is
+\[\begin{bmatrix}
+1 & 1 & 1 & 1 \\
+1 & -1 & 1 & -1 \\
+1 & 1 & -1 & -1 \\
+1 & -1 & -1 & 1\end{bmatrix}\]
+
+\exercise*
+Let $A=\begin{bmatrix}
+4 & 3\\
+3 & 4\end{bmatrix}$.
+\[\det(A-\lambda I)=0\Rightarrow\lambda_1=1,\lambda_2=7\]
+The corresponding normalized eigenvectors are
+\[\ket{\lambda_1}=\frac{1}{\sqrt{2}}\begin{bmatrix}
+1\\
+-1\end{bmatrix}\]
+\[\ket{\lambda_2}=\frac{1}{\sqrt{2}}\begin{bmatrix}
+1\\
+1\end{bmatrix}\]
+Then
+\[A=\ket{\lambda_1}\bra{\lambda_1}+7\ket{\lambda_2}\bra{\lambda_2}\]
+The square root of A is
+\[\sqrt{A}=\ket{\lambda_1}\bra{\lambda_1}+\sqrt{7}\ket{\lambda_2}\bra{\lambda_2}=\frac{1}{2}\begin{bmatrix}
+1+\sqrt{7} & -1+\sqrt{7}\\
+-1+\sqrt{7} & 1+\sqrt{7}\end{bmatrix}\]
+The logarithm of A is
+\[\log(A)=\log(0)\ket{\lambda_1}\bra{\lambda_1}+\log(7)\ket{\lambda_2}\bra{\lambda_2}=\frac{\log(7)}{2}\begin{bmatrix}
+1 & 1\\
+1 & 1\end{bmatrix}\]
+
+\exercise*
+By definition we get
+\[\vec v\cdot\vec \sigma=\begin{bmatrix}
+v_3 & v_1-iv_2\\
+v_1+iv_2 & -v_3\end{bmatrix}\]
+Note that $\vec v$ is a unit vector,
+\begin{align}\det(\vec v\cdot\vec \sigma-\lambda I)=0&\Rightarrow\lambda^2=v_1^2+v_2^2+v_3^2=1\nonumber\\
+&\Rightarrow\lambda_{1,2}=\pm1\nonumber
+\end{align}
+Note that $\vec v\cdot\vec\sigma$ is Hermitian, hence it could be diagonalized as follows:
+\[\vec v\cdot\vec \sigma=\ket{\lambda_1}\bra{\lambda_1}-\ket{\lambda_2}\bra{\lambda_2}\]
+where $\ket{\lambda_{1,2}}$ are the corresponding normalized eigenvectors. (Do not need to explicitly solve them since we already know that $\vec v\cdot\vec\sigma$ is diagonalizable.)
+
+Furthermore,
+\[\ket{\lambda_1}\bra{\lambda_1}-\ket{\lambda_2}\bra{\lambda_2}=I\]
+
+Based on the definition of operator functions and applying Euler's equation, we have
+\begin{align}
+    \exp(i\theta\vec v\cdot\vec\sigma)&=e^{i\theta}\ket{\lambda_1}\bra{\lambda_1}+e^{-i\theta}\ket{\lambda_2}\bra{\lambda_2}\nonumber\\
+    &=(\cos{\theta}+i\sin{\theta})\ket{\lambda_1}\bra{\lambda_1}+(\cos{\theta}-i\sin{\theta})\ket{\lambda_2}\bra{\lambda_2}\nonumber\\
+    &=\cos{\theta}(\ket{\lambda_1}\bra{\lambda_1}+\ket{\lambda_2}\bra{\lambda_2})+i\sin{\theta}(\ket{\lambda_1}\bra{\lambda_1}-\ket{\lambda_2}\bra{\lambda_2})\nonumber\\
+    &=\cos{\theta}I+i\sin{\theta\vec v\cdot\vec\sigma}\nonumber
+\end{align}
+
+\exercise*
+\begin{itemize}
+    \item $\text{tr}(X)=0$
+    \item $\text{tr}(Y)=0$
+    \item $\text{tr}(Z)=1-1=0$
+    
+\end{itemize}
+
+\exercise*
+Suppose both $A$ and $B$ act on $V$ which has a orthonormal basis $\ket{v_i}$.
+\begin{align}
+    \text{tr}(AB)&=\sum_i\bra{v_i}AB\ket{v_i}\nonumber\\
+    &=\sum_i\bra{v_i}AIB\ket{v_i}\nonumber\\
+    &=\sum_{i,j}\bra{v_i}A\ket{v_j}\bra{v_j}B\ket{v_i}\nonumber\\
+    &=\sum_{i,j}\bra{v_j}B\ket{v_i}\bra{v_i}A\ket{v_j}\nonumber\\
+    &=\sum_j\bra{v_j}BA\ket{v_j}\nonumber\\
+    &=\text{tr}(BA)\nonumber
+\end{align}
+
+\exercise*
+Suppose both $A$ and $B$ act on $V$ which has a orthonormal basis $\ket{v_i}$.
+\begin{align}
+    \text{tr}(A+B)&=\sum_i\bra{v_i}A+B\ket{v_i}\nonumber\\
+    &=\sum_i\bra{v_i}A\ket{v_i}+\sum_i\bra{v_i}B\ket{v_i}\nonumber\\
+    &=\text{tr}(A)+\text{tr}(B)\nonumber
+\end{align}
+
+Note that an inner product is linear in its second argument,
+\begin{align}
+    \text{tr}(zA)&=\sum_i\bra{v_i}zA\ket{v_i}\nonumber\\
+    &=z\sum_i\bra{v_i}A\ket{v_i}\nonumber\\
+    &=z\text{tr}(A)\nonumber
+\end{align}
+
+\exercise*
+\subsection{}
+Let $A,B,C$ be operators in $L_V$.
+\begin{itemize}
+    \item Based on exercise 2.38 we have
+    \begin{align}
+        (A,z_bB+z_cC)&=\text{tr}(A^\dagger (z_bB+z_cC))\nonumber\\
+        &=\text{tr}(z_b A^\dagger B)+\text{tr}(z_c A^\dagger C)\nonumber\\
+        &=z_b\text{tr}(A^\dagger B)+z_c\text{tr}(A^\dagger C)\nonumber\\
+        &=z_b(A,B)+z_c(A,C)\nonumber
+    \end{align}
+    where $z_b$ and $z_c$ are arbitary complex numbers.
+    
+    i.e., $(\cdot,\cdot)$ is linear in its second argument.
+    \item Conjugate-symmetry:
+    \[(A,B)=\text{tr}(A^\dagger B)=\sum_i \bra{i}A^\dagger B\ket{i}=(\sum_i \bra{i}B^\dagger A\ket{i})^\star=(B,A)^\star\]
+    \item 
+    \begin{align}
+    (A,A)=\text{tr}(A^\dagger A)&=\sum_i\bra{i}A^\dagger A\ket{i}\nonumber\\
+    &=\sum_i\bra{i}A^\dagger I A\ket{i}\nonumber\\
+    &=\sum_i\bra{i}A^\dagger (\sum_j \ket{j}\bra{j})A\ket{i}\nonumber\\\
+    &=\sum_{i,j}\bra{i}A^\dagger \ket{j}\bra{j}A\ket{i}\nonumber\\
+    &=\sum_{i,j}\bra{j}A \ket{i}^\star\bra{j}A\ket{i}\nonumber\\
+    &=\sum_{i}\left\|\bra{i}A\ket{i}\right\|^2\nonumber\\
+    &\geq 0\nonumber
+    \end{align}
+    with equality if and only if $A$ is a zero operator.
+\end{itemize}
+\subsection{}
+Let $\ket{i}$ be an orthonormal basis for $V$.
+
+It is clear that $\ket{i}\bra{j}$ are linearly independent. And for any operator in $L_V$,
+it could be written in the outer product form, i.e., linear combination of $\ket{i}\bra{j}$.
+
+Hence $\ket{i}\bra{j}$ forms a basis for $L_V$. So
+
+\[\text{rank}(L_V)=\|\{\ket{i}\bra{j}\}\|=d^2\]
+\subsection{}
+Note that the basis given above is countable, we get a set of basis namely $\ket{l_k}$, where 
+\[\ket{l_k}\equiv\ket{i}\bra{j}\quad(i=\lfloor k / d \rfloor -1,\;j = k\;\text{mod}\;n)\]
+
+Apply the Gram–Schmidt procedure:
+
+\begin{itemize}
+    \item Define $\ket{l_1^\prime}=\frac{\ket{l_1}}{\|\ket{l_1}\|}$
+    \item For $1\leq k \leq d^2 -1$ define $\ket{l_{k+1}^\prime}$ inductively by
+    \[\ket{l_{k+1}^\prime}=\frac{\ket{l_{k+1}}-\sum_{i=1}^k\braket{l_i^\prime|l_{k+1}}\ket{l_i^\prime}}{\|\ket{l_{k+1}}-\sum_{i=1}^k\braket{l_i^\prime|l_{k+1}}\ket{l_i^\prime}\|}\]
+\end{itemize}
+
+The vectors $\ket{l_1^\prime},\ket{l_2^\prime},\dots,\ket{l_{d^2}^\prime}$ form an orthonormal basis for $L_V$. 
 
 
 \end{document}
