@@ -9,16 +9,9 @@
 
 \maketitle
 
-\exercise
-The exercises are automatically numbered, starting from one. Packages such as \texttt{amsmath} and \texttt{hyperref} are included by default.
-
-Paragraphs are not indented, but are instead separated by some vertical space.
-
-As an example: the \emph{standard inner product} on $\R^n$ is defined as
-\[\vec a * \vec b \coloneqq x_1 y_1 + \dots + x_n y_n\qquad\text{for }\vec a,\vec b \in \R^n.\]
-Note that \texttt{*} can be used instead of \verb|\cdot|, and \verb|\R| instead of \verb|\mathbb{R}|. (For a normal asterisk, use \verb|\ast|.) Of course, there are macros for the natural numbers etc.\ too. Commands such as \verb|\abs{}| and \verb|\Set{}| can be used to easily create (scaled) delimiters. For example,
-\[\abs{\frac{1}{1 - \lambda h}} \le 1\qquad\text{and}\qquad\Set{ x \in \R \mid 1 < \sqrt{x^3 + 2} < \frac{3}{2} }.\]
-The starred version of these commands disables the auto-scaling.
+\exercise*
+\[(1,-1)+(1,2)-(2,1)=(0,0)\]
+Hence the three vectors are linearly dependent.
 
 \exercise*
 A matrix representation of $A$ is:
@@ -591,7 +584,7 @@ Suppose both $A$ and $B$ act on $V$ which has a orthonormal basis $\ket{v_i}$.
 \end{align}
 
 \exercise*
-Suppose both $A$ and $B$ act on $V$ which has a orthonormal basis $\ket{v_i}$.
+Suppose both $A$ and $B$ act on $V$ which has an orthonormal basis $\ket{v_i}$.
 \begin{align}
     \text{tr}(A+B)&=\sum_i\bra{v_i}A+B\ket{v_i}\nonumber\\
     &=\sum_i\bra{v_i}A\ket{v_i}+\sum_i\bra{v_i}B\ket{v_i}\nonumber\\
@@ -656,5 +649,134 @@ Apply the Gram–Schmidt procedure:
 
 The vectors $\ket{l_1^\prime},\ket{l_2^\prime},\dots,\ket{l_{d^2}^\prime}$ form an orthonormal basis for $L_V$. 
 
+\exercise*
+\begin{itemize}
+    \item 
+    \[[X,Y]=XY-YX=2\begin{bmatrix}i & 0\\0&-i\end{bmatrix}=2iZ\]
+    \item
+    \[[Y,Z]=YZ-ZY=2\begin{bmatrix}0 & i\\i&0\end{bmatrix}=2iX\]
+    \item
+    \[[Z,X]=ZX-XZ=2\begin{bmatrix}0 & 1\\-1&0\end{bmatrix}=2iY\]
+\end{itemize}
+
+\exercise*
+
+\exercise*
+\[\frac{[A,B]+\{A,B\}}{2}=\frac{AB-BA+AB+BA}{2}=AB\]
+
+\exercise*
+Based on exercise 2.41, we have
+\[\{\sigma_j,\sigma_k\}=2\delta_{jk}I\]
+Hence
+\begin{align}
+    \sigma_j\sigma_k&=\frac{\{\sigma_j,\sigma_k\}+[\sigma_j,\sigma_k]}{2}\nonumber\\
+    &=\frac{2\delta_{jk}I+2i\sum_{l=1}^3\epsilon_{jkl}\sigma_l}{2}\nonumber\\
+    &=\delta_{jk}I+i\sum_{l=1}^3\epsilon_{jkl}\sigma_l\nonumber
+\end{align}
+
+\exercise*
+Given that $[A,B]=0$ and $\{A,B\}=0$, we have
+\[AB=BA\]
+\[AB=-BA\]
+Multiply by $A^{-1}$, we get
+\[ABA^{-1}=BAA^{-1}=B\]
+\[ABA^{-1}=-BAA^{-1}=-B\]
+Note that $B=-B$, so $B$ must be 0.
+
+\exercise*
+\[[A,B]^\dagger=(AB-BA)^\dagger=B^\dagger A^\dagger-A^\dagger B^\dagger=[B^\dagger,A^\dagger]\]
+
+\exercise*
+\[[A,B]=AB-BA=-(BA-AB)=-[B,A]\]
+
+\exercise*
+\[i[A,B]=i(AB-BA)\]
+Given that $A=A^\dagger$ and $B=B^\dagger$ as they are Hermitian,
+\[(i[A,B])^\dagger=-i[A,B]^\dagger=-i(B^\dagger A^\dagger-A^\dagger B^\dagger)=i(B A-A B)=i[A,B]\]
+Hence $i[A,B]$ is also Hermitian.
+
+\exercise*
+
+\exercise*
+
+\exercise*
+
+\exercise*
+\[H^\dagger=\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1&1\\
+1&-1
+\end{bmatrix}
+=H
+\]
+\[H^\dagger H=H H^\dagger=\frac{1}{2}
+\begin{bmatrix}
+2&0\\
+0&2
+\end{bmatrix}=I\]
+Hence $H$ is unitary.
+
+\exercise*
+Note that $H=H^\dagger$, so
+\[H^2=H H^\dagger=I\]
+
+\exercise*
+\[\det(H-\lambda I)=0\Rightarrow \lambda_{1,2}=\pm\frac{\sqrt{5}}{2}\]
+
+\exercise*
+Note that $A$ and $B$ commute, so they could be diagonalized w.r.t. an orthonormal basis:
+\[A=\sum_{i}a_{i}\ket{i}\bra{i}\]
+\[B=\sum_{i}b_{i}\ket{i}\bra{i}\]
+By definition of operator functions, we have
+\begin{align}
+    \exp(A)\exp(B)&=\sum_{i}\exp(a_{i})\ket{i}\bra{i}\sum_{j}\exp(b_{j})\ket{j}\bra{j}\nonumber\\
+    &=\sum_{i,j}\exp(a_{i}+b_{j})\ket{i}\delta_{ij}\bra{j}\nonumber\\
+    &=\sum_i \exp(a_{i}+b_{i})\ket{i}\bra{i}\nonumber\\
+    &=\exp(A+B)\nonumber
+\end{align}
+
+\exercise*
+Note that the Hamiltonian is Hermitian and hence diagonalizable,
+\[H=\sum_E E\ket{E}\bra{E}\]
+where $E$ are real eigenvalues.
+
+We get
+\[U(t_1,t_2)=\exp[\frac{-iH(t_2-t_1)}\hbar]=\sum_E \exp[\frac{-iE(t_2-t_1)}{\hbar}]\ket{E}\bra{E}\]
+and
+\[U^\dagger(t_1,t_2)=\sum_E\exp[\frac{iE(t_2-t_1)}{\hbar}]\ket{E}\bra{E}\]
+
+Therefore
+\[U(t_1,t_2)U^\dagger(t_1,t_2)=\sum_{E_1,E_2}\exp[\frac{iE_2(t_2-t_1)-iE_1(t_2-t_1)}{\hbar}]\ket{E_1}\delta_{E_1,E_2}\bra{E_2}=\sum_E\ket{E}\bra{E}=I\]
+and similarly $U^\dagger(t_1,t_2)U(t_1,t_2)=I$. i.e., $U(t_1,t_2)$ is unitary.
+
+\exercise*
+\begin{itemize}
+    \item $\Rightarrow$:
+    
+    Note that $U$ is normal ($UU^\dagger=U^\dagger U=I$) and hence diagonalizable,
+    \[U=\sum_E E\ket{E}\bra{E}\]
+    where all eigenvalues $E$ (not necessarily real) have modulus 1 and can be written in the following form:
+    \[E=\exp(i\theta_E)\]
+    for some real $\theta_E$.
+    
+    
+    We have
+    \[K=-i\log(U)=\sum_E -i\log(E)\ket{E}\bra{E}=\sum_E \theta_E\ket{E}
+    \bra{E}\]
+    \[K^\dagger=\sum_E \theta_E\ket{E}\bra{E}=K\]
+    
+    Therefore $K\equiv-i\log(U)$ is Hermitian for any unitary $U$.
+    \item $\Leftarrow$:
+    
+    Note that $K$ is Hermitian and hence diagonalizable,
+    \[K=\sum_E E\ket{E}\bra{E}\]
+    where all eigenvalues $E$ are real numbers and eigenvectors $\ket{E}$ are normalized.
+    
+    We have
+    \[U=\exp(iK)=\sum_E \exp(iE)\ket{E}\bra{E}\]
+    \[U^\dagger=\sum_E \exp(-iE)\ket{E}\bra{E}\]
+    \[U^\dagger U=U U^\dagger=\sum_E \exp(iE-iE)\ket{E}\bra{E}=\sum_E\ket{E}\bra{E}=I\]
+    Therefore $U\equiv \exp(iK)$ is unitary for any Hermitian $K$.
+\end{itemize}
 
 \end{document}
